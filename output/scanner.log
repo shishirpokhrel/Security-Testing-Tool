@@ -123,3 +123,17 @@ Scan interrupted by user
 2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - Detected project types: Angular/Node
 2026-01-22 22:32:09 - SecurityScanner - [33mWARNING[0m - Found 2 dependency vulnerabilities!
 2026-01-22 22:32:09 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:33:04 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:33:04 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:33:04 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:33:04 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/eSewaAPITestingUsingPlaywright
+2026-01-22 22:33:04 - SecurityScanner - [34mINFO[0m - Detected project types: Angular/Node
+2026-01-22 22:33:05 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found.
+2026-01-22 22:33:05 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:33:25 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:33:25 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:33:25 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:33:25 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/eSewaWebUIAutomation
+2026-01-22 22:33:25 - SecurityScanner - [34mINFO[0m - Detected project types: Angular/Node
+2026-01-22 22:33:26 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found.
+2026-01-22 22:33:26 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
