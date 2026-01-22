@@ -16,6 +16,10 @@ from modules.nmap_scanner import NmapScanner
 from modules.subfinder_module import SubfinderScanner
 from modules.bruteforce import BruteForce
 from modules.xss_scanner import XSSScanner
+from modules.java_scanner import JavaScanner
+from modules.angular_scanner import AngularScanner
+from modules.android_scanner import AndroidScanner
+from modules.ios_scanner import iOSScanner
 from utils.logger import setup_logger, success
 import config
 
@@ -147,6 +151,164 @@ def xss_scan_mode(args):
     return results
 
 
+def android_scan_mode(args):
+    """Run Android security scanning"""
+    logger.info("=" * 60)
+    logger.info("ANDROID SECURITY SCANNING MODE")
+    logger.info("=" * 60)
+    
+    scanner = AndroidScanner()
+    if args.directory:
+        results = scanner.scan_directory(args.directory)
+    else:
+        logger.error("Please specify a directory to scan.")
+        return
+
+    # Print summary
+    if results.get('manifest_issues'):
+         logger.warning(f"Found {len(results['manifest_issues'])} manifest issues!")
+         for issue in results['manifest_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}")
+             print(f"    Possible issue: {issue['description']}")
+
+    if results.get('code_issues'):
+         logger.warning(f"Found {len(results['code_issues'])} code security issues!")
+         for issue in results['code_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}:{issue['line']}")
+             print(f"    Possible issue: {issue['description']}")
+             print(f"    Code: {issue['snippet']}")
+
+    if args.output:
+        save_results(results, args.output)
+    
+    return results
+
+
+def ios_scan_mode(args):
+    """Run iOS security scanning"""
+    logger.info("=" * 60)
+    logger.info("iOS SECURITY SCANNING MODE")
+    logger.info("=" * 60)
+    
+    scanner = iOSScanner()
+    if args.directory:
+        results = scanner.scan_directory(args.directory)
+    else:
+        logger.error("Please specify a directory to scan.")
+        return
+
+    # Print summary
+    if results.get('plist_issues'):
+         logger.warning(f"Found {len(results['plist_issues'])} configuration issues!")
+         for issue in results['plist_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}")
+             print(f"    Possible issue: {issue['description']}")
+
+    if results.get('code_issues'):
+         logger.warning(f"Found {len(results['code_issues'])} code security issues!")
+         for issue in results['code_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}:{issue['line']}")
+             print(f"    Possible issue: {issue['description']}")
+             print(f"    Code: {issue['snippet']}")
+
+    if args.output:
+        save_results(results, args.output)
+    
+    return results
+
+
+    return results
+
+
+def java_scan_mode(args):
+    """Run Java/Spring Boot dependency scanning"""
+    logger.info("=" * 60)
+    logger.info("JAVA/SPRING BOOT SECURITY SCANNING MODE")
+    logger.info("=" * 60)
+    
+    scanner = JavaScanner()
+    if args.file:
+        # Scan single file
+        if args.file.endswith('pom.xml'):
+            vulns = scanner.scan_maven(args.file)
+        elif args.file.endswith('build.gradle'):
+            vulns = scanner.scan_gradle(args.file)
+        else:
+            logger.error("Unsupported file type. Use pom.xml or build.gradle")
+            return
+            
+        results = {
+            'vulnerabilities': vulns,
+            'code_issues': [],
+            'files_analyzed': [args.file]
+        }
+    else:
+        # Scan directory
+        results = scanner.scan_directory(args.directory)
+    
+    # Print summary
+    if results['vulnerabilities']:
+        logger.warning(f"Found {len(results['vulnerabilities'])} dependency vulnerabilities!")
+        for vuln in results['vulnerabilities']:
+            print(f"\n[!] Vulnerability in {vuln['dependency']} ({vuln['file']}):")
+            for v in vuln['vulnerability']:
+                print(f"    - {v.get('id')}: {v.get('summary')}")
+    else:
+        success(logger, "No vulnerabilities found in dependencies.")
+
+    # SAST Summary
+    if results.get('code_issues'):
+         logger.warning(f"Found {len(results['code_issues'])} code security issues!")
+         for issue in results['code_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}:{issue['line']}")
+             print(f"    Possible issue: {issue['description']}")
+             print(f"    Code: {issue['snippet']}")
+
+    if args.output:
+        save_results(results, args.output)
+    
+    return results
+
+
+def angular_scan_mode(args):
+    """Run AngularJS/Node dependency scanning"""
+    logger.info("=" * 60)
+    logger.info("ANGULARJS/NODE SECURITY SCANNING MODE")
+    logger.info("=" * 60)
+    
+    scanner = AngularScanner()
+    if args.file:
+        # Scan single file
+        if args.file.endswith('package.json'):
+            vulns = scanner.scan_package_json(args.file)
+        else:
+            logger.error("Unsupported file type. Use package.json")
+            return
+            
+        results = {
+            'vulnerabilities': vulns,
+            'files_analyzed': [args.file]
+        }
+    else:
+        # Scan directory
+        results = scanner.scan_directory(args.directory)
+    
+    # Print summary
+    if results['vulnerabilities']:
+        logger.warning(f"Found {len(results['vulnerabilities'])} vulnerabilities!")
+        for vuln in results['vulnerabilities']:
+            print(f"\n[!] Vulnerability in {vuln['dependency']} ({vuln['file']}):")
+            for v in vuln['vulnerability']:
+                print(f"    - {v.get('id')}: {v.get('summary')}")
+    else:
+        success(logger, "No vulnerabilities found in dependencies.")
+        
+    if args.output:
+        save_results(results, args.output)
+    
+    return results
+
+
 def interactive_mode():
     """Interactive menu-driven interface"""
     print_banner()
@@ -159,10 +321,14 @@ def interactive_mode():
         print("2. Subfinder Subdomain Enumeration")
         print("3. Brute Force Attack")
         print("4. XSS Vulnerability Scanning")
-        print("5. Exit")
+        print("5. Java/Spring Boot Dependency Scan")
+        print("6. AngularJS/Node Dependency Scan")
+        print("7. Android Security Scan")
+        print("8. iOS Security Scan")
+        print("9. Exit")
         print("=" * 60)
         
-        choice = input("\nEnter your choice (1-5): ").strip()
+        choice = input("\nEnter your choice (1-9): ").strip()
         
         if choice == '1':
             target = input("Enter target IP/hostname: ").strip()
@@ -228,8 +394,62 @@ def interactive_mode():
             if output == 'y':
                 filename = f"output/xss_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
                 save_results(results, filename)
-        
+
         elif choice == '5':
+            path = input("Enter directory or file path (pom.xml/build.gradle): ").strip()
+            scanner = JavaScanner()
+            if os.path.isfile(path):
+                if path.endswith('pom.xml'):
+                    vulns = scanner.scan_maven(path)
+                elif path.endswith('build.gradle'):
+                    vulns = scanner.scan_gradle(path)
+                else: 
+                    print("Invalid file.")
+                    continue
+                results = {'vulnerabilities': vulns, 'files_analyzed': [path]}
+            else:
+                 results = scanner.scan_directory(path)
+
+            output = input("\nSave results? (y/N): ").strip().lower()
+            if output == 'y':
+                filename = f"output/java_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                save_results(results, filename)
+
+        elif choice == '6':
+            path = input("Enter directory or file path (package.json): ").strip()
+            scanner = AngularScanner()
+            if os.path.isfile(path):
+                vulns = scanner.scan_package_json(path)
+                results = {'vulnerabilities': vulns, 'files_analyzed': [path]}
+            else:
+                results = scanner.scan_directory(path)
+
+            output = input("\nSave results? (y/N): ").strip().lower()
+            if output == 'y':
+                filename = f"output/angular_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                save_results(results, filename)
+        
+        elif choice == '7':
+            path = input("Enter project directory to scan: ").strip()
+            scanner = AndroidScanner()
+            results = scanner.scan_directory(path)
+            
+            output = input("\nSave results? (y/N): ").strip().lower()
+            if output == 'y':
+                filename = f"output/android_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                save_results(results, filename)
+
+        elif choice == '8':
+            path = input("Enter project directory to scan: ").strip()
+            scanner = iOSScanner()
+            results = scanner.scan_directory(path)
+            
+            output = input("\nSave results? (y/N): ").strip().lower()
+            if output == 'y':
+                filename = f"output/ios_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                save_results(results, filename)
+
+        elif choice == '9':
             print("\nExiting... Stay safe!")
             break
         
@@ -304,6 +524,30 @@ Examples:
     xss_parser.add_argument('--timeout', type=int, default=10, help='Request timeout')
     xss_parser.add_argument('-o', '--output', help='Output file')
     
+    # Java Scanner
+    java_parser = subparsers.add_parser('java-scan', help='Java/Spring Boot dependency scanning')
+    java_group = java_parser.add_mutually_exclusive_group(required=True)
+    java_group.add_argument('-d', '--directory', help='Project directory to scan')
+    java_group.add_argument('-f', '--file', help='Specific pom.xml or build.gradle file')
+    java_parser.add_argument('-o', '--output', help='Output file')
+
+    # Angular Scanner
+    ng_parser = subparsers.add_parser('angular-scan', help='AngularJS/Node dependency scanning')
+    ng_group = ng_parser.add_mutually_exclusive_group(required=True)
+    ng_group.add_argument('-d', '--directory', help='Project directory to scan')
+    ng_group.add_argument('-f', '--file', help='Specific package.json file')
+    ng_parser.add_argument('-o', '--output', help='Output file')
+
+    # Android Scanner
+    android_parser = subparsers.add_parser('android-scan', help='Android security scanning')
+    android_parser.add_argument('-d', '--directory', required=True, help='Project directory to scan')
+    android_parser.add_argument('-o', '--output', help='Output file')
+
+    # iOS Scanner
+    ios_parser = subparsers.add_parser('ios-scan', help='iOS security scanning')
+    ios_parser.add_argument('-d', '--directory', required=True, help='Project directory to scan')
+    ios_parser.add_argument('-o', '--output', help='Output file')
+    
     args = parser.parse_args()
     
     # If no mode specified, run interactive mode
@@ -324,6 +568,14 @@ Examples:
             bruteforce_mode(args)
         elif args.mode == 'xss':
             xss_scan_mode(args)
+        elif args.mode == 'java-scan':
+            java_scan_mode(args)
+        elif args.mode == 'angular-scan':
+            angular_scan_mode(args)
+        elif args.mode == 'android-scan':
+            android_scan_mode(args)
+        elif args.mode == 'ios-scan':
+            ios_scan_mode(args)
         
         success(logger, "Scan completed successfully!")
         return 0

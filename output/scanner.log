@@ -10,3 +10,82 @@
 2026-01-22 17:26:40 - SecurityScanner - [34mINFO[0m - ============================================================
 2026-01-22 17:26:58 - SecurityScanner - [33mWARNING[0m - 
 Scan interrupted by user
+2026-01-22 21:58:39 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:39 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 21:58:39 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:41 - SecurityScanner - [33mWARNING[0m - Found 1 vulnerabilities!
+2026-01-22 21:58:41 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 21:58:41 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:41 - SecurityScanner - [34mINFO[0m - ANGULARJS/NODE SECURITY SCANNING MODE
+2026-01-22 21:58:41 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:43 - SecurityScanner - [33mWARNING[0m - Found 3 vulnerabilities!
+2026-01-22 21:58:43 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 21:58:52 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:52 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 21:58:52 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:52 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found in dependencies.
+2026-01-22 21:58:52 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 21:58:53 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:53 - SecurityScanner - [34mINFO[0m - ANGULARJS/NODE SECURITY SCANNING MODE
+2026-01-22 21:58:53 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:58:53 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found in dependencies.
+2026-01-22 21:58:53 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 21:59:02 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:59:02 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 21:59:02 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:59:04 - SecurityScanner - [33mWARNING[0m - Found 1 vulnerabilities!
+2026-01-22 21:59:04 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 21:59:05 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:59:05 - SecurityScanner - [34mINFO[0m - ANGULARJS/NODE SECURITY SCANNING MODE
+2026-01-22 21:59:05 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 21:59:09 - SecurityScanner - [33mWARNING[0m - Found 3 vulnerabilities!
+2026-01-22 21:59:09 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:07:36 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:07:36 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 22:07:36 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:07:47 - SecurityScanner - [33mWARNING[0m - Found 3 vulnerabilities!
+2026-01-22 22:07:47 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:11:10 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:11:10 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 22:11:10 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:11:22 - SecurityScanner - [33mWARNING[0m - Found 3 vulnerabilities!
+2026-01-22 22:11:22 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:14:19 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:14:19 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 22:14:19 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:14:32 - SecurityScanner - [33mWARNING[0m - Found 3 vulnerabilities!
+2026-01-22 22:14:32 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:18:20 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:18:20 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 22:18:20 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:18:20 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found in dependencies.
+2026-01-22 22:18:20 - SecurityScanner - [33mWARNING[0m - Found 6 code security issues!
+2026-01-22 22:18:20 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:21:35 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:21:35 - SecurityScanner - [34mINFO[0m - JAVA/SPRING BOOT SECURITY SCANNING MODE
+2026-01-22 22:21:35 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:21:47 - SecurityScanner - [33mWARNING[0m - Found 3 dependency vulnerabilities!
+2026-01-22 22:21:47 - SecurityScanner - [33mWARNING[0m - Found 13 code security issues!
+2026-01-22 22:21:47 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:24:11 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:24:11 - SecurityScanner - [34mINFO[0m - ANDROID SECURITY SCANNING MODE
+2026-01-22 22:24:11 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:24:11 - SecurityScanner - [33mWARNING[0m - Found 3 manifest issues!
+2026-01-22 22:24:11 - SecurityScanner - [33mWARNING[0m - Found 1 code security issues!
+2026-01-22 22:24:11 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:24:33 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:24:33 - SecurityScanner - [34mINFO[0m - iOS SECURITY SCANNING MODE
+2026-01-22 22:24:33 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:24:33 - SecurityScanner - [33mWARNING[0m - Found 1 configuration issues!
+2026-01-22 22:24:33 - SecurityScanner - [33mWARNING[0m - Found 3 code security issues!
+2026-01-22 22:24:33 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:25:12 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:25:12 - SecurityScanner - [34mINFO[0m - ANGULARJS/NODE SECURITY SCANNING MODE
+2026-01-22 22:25:12 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:25:12 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found in dependencies.
+2026-01-22 22:25:12 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:25:46 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:25:46 - SecurityScanner - [34mINFO[0m - ANGULARJS/NODE SECURITY SCANNING MODE
+2026-01-22 22:25:46 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:25:55 - SecurityScanner - [33mWARNING[0m - Found 2 vulnerabilities!
+2026-01-22 22:25:55 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!

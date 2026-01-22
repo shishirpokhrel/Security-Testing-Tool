@@ -7,7 +7,9 @@ A comprehensive Python-based security scanning tool that combines network scanni
 - **🔍 Nmap Port Scanner**: Network reconnaissance with port scanning, service detection, OS detection, and vulnerability scanning
 - **🌐 Subfinder Integration**: Passive subdomain enumeration for target domains
 - **🔐 Brute Force Module**: Credential testing for HTTP (Basic/Form), SSH, and FTP
-- **⚠️ XSS Scanner**: Cross-site scripting vulnerability detection with multiple payload injection vectors
+- ⚠️ **XSS Scanner**: Cross-site scripting vulnerability detection with multiple payload injection vectors
+- ☕ **Java Scanner**: Vulnerability scanning for Maven (pom.xml) and Gradle (build.gradle) dependencies
+- 🅰️ **Angular/Node Scanner**: Vulnerability scanning for npm (package.json) dependencies
 
 ## Prerequisites
 
@@ -55,6 +57,19 @@ pip install -r requirements.txt
 4. (Optional) Install Subfinder for subdomain enumeration
 
 ## Usage
+
+### 🚀 Quick Run (Recommended)
+Use the included helper script to automatically handle the virtual environment:
+
+```bash
+# Make executable (first time only)
+chmod +x run.sh
+
+# Run any command
+./run.sh java-scan -d /path/to/project
+./run.sh angular-scan -f package.json
+./run.sh --help
+```
 
 ### Interactive Mode
 
@@ -154,6 +169,35 @@ Save results:
 python securityscanner.py xss -u "http://example.com/search?q=test" -o xss_results.json
 ```
 
+## Scan with custom payloads:
+```bash
+python securityscanner.py xss -u "http://example.com/search?q=test" -pf custom_payloads.txt
+```
+
+#### Java/Spring Boot Scan
+
+Scan a single file:
+```bash
+python securityscanner.py java-scan -f path/to/pom.xml
+```
+
+Scan a directory:
+```bash
+python securityscanner.py java-scan -d path/to/project/root
+```
+
+#### AngularJS/Node Scan
+
+Scan a single file:
+```bash
+python securityscanner.py angular-scan -f path/to/package.json
+```
+
+Scan a directory:
+```bash
+python securityscanner.py angular-scan -d path/to/project/root
+```
+
 ## Project Structure
 
 ```
@@ -166,7 +210,9 @@ secTest/
 │   ├── nmap_scanner.py     # Nmap integration
 │   ├── subfinder_module.py # Subfinder integration
 │   ├── bruteforce.py       # Brute force module
-│   └── xss_scanner.py      # XSS vulnerability scanner
+│   ├── xss_scanner.py      # XSS vulnerability scanner
+│   ├── java_scanner.py     # Java dependency scanner
+│   └── angular_scanner.py  # AngularJS/Node scanner
 ├── utils/
 │   ├── __init__.py
 │   └── logger.py           # Colored logging utility
