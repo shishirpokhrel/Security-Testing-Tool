@@ -101,3 +101,25 @@ Scan interrupted by user
 2026-01-22 22:29:38 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/IdeaProjects/eSewaAPIAutomation
 2026-01-22 22:29:39 - SecurityScanner - [34mINFO[0m - Detected project types: Java/Spring
 2026-01-22 22:29:50 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:31:04 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:04 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:31:04 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:04 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/Security-Testing-Tool/tests/debug_project
+2026-01-22 22:31:04 - SecurityScanner - [34mINFO[0m - Detected project types: Java/Spring
+2026-01-22 22:31:05 - SecurityScanner - [33mWARNING[0m - Found 1 dependency vulnerabilities!
+2026-01-22 22:31:05 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:31:27 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:27 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:31:27 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:27 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/IdeaProjects/eSewaAPIAutomation
+2026-01-22 22:31:27 - SecurityScanner - [34mINFO[0m - Detected project types: Java/Spring
+2026-01-22 22:31:39 - SecurityScanner - [33mWARNING[0m - Found 3 dependency vulnerabilities!
+2026-01-22 22:31:39 - SecurityScanner - [33mWARNING[0m - Found 13 code security issues!
+2026-01-22 22:31:39 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/eSewa_TestCaseGenerator
+2026-01-22 22:31:59 - SecurityScanner - [34mINFO[0m - Detected project types: Angular/Node
+2026-01-22 22:32:09 - SecurityScanner - [33mWARNING[0m - Found 2 dependency vulnerabilities!
+2026-01-22 22:32:09 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
