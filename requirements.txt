@@ -1,0 +1,7 @@
+python-nmap==0.7.1
+requests==2.31.0
+beautifulsoup4==4.12.3
+colorama==0.4.6
+tqdm==4.66.1
+urllib3==2.1.0
+lxml==5.1.0

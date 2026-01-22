@@ -1,0 +1,12 @@
+2026-01-22 17:24:18 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:24:18 - SecurityScanner - [34mINFO[0m - NMAP SCANNING MODE
+2026-01-22 17:24:18 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:25:17 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:25:17 - SecurityScanner - [34mINFO[0m - XSS VULNERABILITY SCANNING MODE
+2026-01-22 17:25:17 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:25:20 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 17:26:40 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:26:40 - SecurityScanner - [34mINFO[0m - BRUTE FORCE MODE
+2026-01-22 17:26:40 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 17:26:58 - SecurityScanner - [33mWARNING[0m - 
+Scan interrupted by user
