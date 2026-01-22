@@ -89,3 +89,15 @@ Scan interrupted by user
 2026-01-22 22:25:46 - SecurityScanner - [34mINFO[0m - ============================================================
 2026-01-22 22:25:55 - SecurityScanner - [33mWARNING[0m - Found 2 vulnerabilities!
 2026-01-22 22:25:55 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:28:14 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:28:14 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:28:14 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:28:14 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/Security-Testing-Tool/tests/mixed_project
+2026-01-22 22:28:14 - SecurityScanner - [34mINFO[0m - Detected project types: Java/Spring, Android, Angular/Node
+2026-01-22 22:28:15 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!
+2026-01-22 22:29:38 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:29:38 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-01-22 22:29:38 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-01-22 22:29:38 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: /Users/shishirpokhrel/IdeaProjects/eSewaAPIAutomation
+2026-01-22 22:29:39 - SecurityScanner - [34mINFO[0m - Detected project types: Java/Spring
+2026-01-22 22:29:50 - SecurityScanner - [32mSUCCESS[0m - Scan completed successfully!

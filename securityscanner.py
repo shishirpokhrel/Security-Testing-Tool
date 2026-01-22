@@ -57,6 +57,40 @@ def save_results(results, output_file):
     except Exception as e:
         logger.error(f"Error saving results: {str(e)}")
 
+def print_scan_results(results):
+    """Helper to print scan results to console"""
+    # Dependency Vulnerabilities
+    if results.get('vulnerabilities'):
+        logger.warning(f"Found {len(results['vulnerabilities'])} dependency vulnerabilities!")
+        for vuln in results['vulnerabilities']:
+            print(f"\n[!] Vulnerability in {vuln['dependency']} ({vuln['file']}):")
+            for v in vuln['vulnerability']:
+                print(f"    - {v.get('id')}: {v.get('summary')}")
+    
+    # Manifest/Config Issues
+    if results.get('manifest_issues'):
+         logger.warning(f"Found {len(results['manifest_issues'])} manifest issues!")
+         for issue in results['manifest_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}")
+             print(f"    Possible issue: {issue['description']}")
+
+    if results.get('plist_issues'):
+         logger.warning(f"Found {len(results['plist_issues'])} configuration issues!")
+         for issue in results['plist_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}")
+             print(f"    Possible issue: {issue['description']}")
+
+    # Code/SAST Issues
+    if results.get('code_issues'):
+         logger.warning(f"Found {len(results['code_issues'])} code security issues!")
+         for issue in results['code_issues']:
+             print(f"\n[!] {issue['rule']} ({issue['severity']}) in {issue['file']}:{issue['line']}")
+             print(f"    Possible issue: {issue['description']}")
+             print(f"    Code: {issue['snippet']}")
+    
+    if not any(results.get(k) for k in ['vulnerabilities', 'manifest_issues', 'plist_issues', 'code_issues']):
+        success(logger, "No vulnerabilities found.")
+
 
 def nmap_scan_mode(args):
     """Run Nmap scanning"""
@@ -270,6 +304,94 @@ def java_scan_mode(args):
     return results
 
 
+def auto_scan_mode(args):
+    """Run auto-discovery scan"""
+    logger.info("=" * 60)
+    logger.info("AUTO-DISCOVERY SECURITY SCANNING MODE")
+    logger.info("=" * 60)
+    
+    target_dir = os.path.abspath(args.directory)
+    logger.info(f"Scanning directory for projects: {target_dir}")
+    
+    detected_types = set()
+    results = {}
+    
+    # Discovery phase
+    for root, _, files in os.walk(target_dir):
+        if 'pom.xml' in files or 'build.gradle' in files:
+             # Check if it's Android (has Manifest or android in gradle)
+             is_android = False
+             if 'AndroidManifest.xml' in files:
+                 is_android = True
+             else:
+                 # Quick peek at build.gradle if exists
+                 if 'build.gradle' in files:
+                     try:
+                         with open(os.path.join(root, 'build.gradle'), 'r') as f:
+                             if 'com.android.application' in f.read():
+                                 is_android = True
+                     except: pass
+            
+             if is_android:
+                 detected_types.add('Android')
+             else:
+                 detected_types.add('Java/Spring')
+                 
+        if 'package.json' in files:
+            detected_types.add('Angular/Node')
+        
+        if 'AndroidManifest.xml' in files and 'Android' not in detected_types:
+            detected_types.add('Android')
+            
+        if 'Info.plist' in files or 'Podfile' in files or any(f.endswith('.xcodeproj') for f in files):
+            detected_types.add('iOS')
+
+    logger.info(f"Detected project types: {', '.join(detected_types) if detected_types else 'None'}")
+    
+    # Execution phase
+    if 'Java/Spring' in detected_types:
+        print("\n" + "-" * 40)
+        print("Running Java/Spring Boot Scan...")
+        print("-" * 40)
+        scanner = JavaScanner()
+        res = scanner.scan_directory(target_dir)
+        results['java'] = res
+        print_scan_results(res)
+
+    if 'Angular/Node' in detected_types:
+        print("\n" + "-" * 40)
+        print("Running Angular/Node Scan...")
+        print("-" * 40)
+        scanner = AngularScanner()
+        res = scanner.scan_directory(target_dir)
+        results['angular'] = res
+        print_scan_results(res)
+
+    if 'Android' in detected_types:
+        print("\n" + "-" * 40)
+        print("Running Android Scan...")
+        print("-" * 40)
+        scanner = AndroidScanner()
+        res = scanner.scan_directory(target_dir)
+        results['android'] = res
+        print_scan_results(res)
+
+    if 'iOS' in detected_types:
+        print("\n" + "-" * 40)
+        print("Running iOS Scan...")
+        print("-" * 40)
+        scanner = iOSScanner()
+        res = scanner.scan_directory(target_dir)
+        results['ios'] = res
+        print_scan_results(res)
+
+    # Save aggregated results
+    if args.output:
+        save_results(results, args.output)
+        
+    return results
+
+
 def angular_scan_mode(args):
     """Run AngularJS/Node dependency scanning"""
     logger.info("=" * 60)
@@ -317,20 +439,35 @@ def interactive_mode():
         print("\n" + "=" * 60)
         print("SELECT SCANNING MODE:")
         print("=" * 60)
-        print("1. Nmap Port Scanning")
-        print("2. Subfinder Subdomain Enumeration")
-        print("3. Brute Force Attack")
-        print("4. XSS Vulnerability Scanning")
-        print("5. Java/Spring Boot Dependency Scan")
-        print("6. AngularJS/Node Dependency Scan")
-        print("7. Android Security Scan")
-        print("8. iOS Security Scan")
-        print("9. Exit")
+        print("1. Auto-Detect & Scan Project (Recommended)")
+        print("2. Nmap Port Scanning")
+        print("3. Subfinder Subdomain Enumeration")
+        print("4. Brute Force Attack")
+        print("5. XSS Vulnerability Scanning")
+        print("6. Java/Spring Boot Dependency Scan")
+        print("7. AngularJS/Node Dependency Scan")
+        print("8. Android Security Scan")
+        print("9. iOS Security Scan")
+        print("0. Exit")
         print("=" * 60)
         
-        choice = input("\nEnter your choice (1-9): ").strip()
+        choice = input("\nEnter your choice (0-9): ").strip()
         
         if choice == '1':
+            path = input("Enter project directory: ").strip()
+            # Mock args object
+            class Args: pass
+            args = Args()
+            args.directory = path
+            args.output = None
+            
+            output = input("\nSave results? (y/N): ").strip().lower()
+            if output == 'y':
+                args.output = f"output/autoscan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                
+            auto_scan_mode(args)
+
+        elif choice == '2':
             target = input("Enter target IP/hostname: ").strip()
             ports = input("Enter ports (common/all/custom): ").strip() or 'common'
             
@@ -449,7 +586,7 @@ def interactive_mode():
                 filename = f"output/ios_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
                 save_results(results, filename)
 
-        elif choice == '9':
+        elif choice == '0':
             print("\nExiting... Stay safe!")
             break
         
@@ -483,6 +620,11 @@ Examples:
     
     subparsers = parser.add_subparsers(dest='mode', help='Scanning mode')
     
+    # Auto-Scan
+    auto_parser = subparsers.add_parser('scan', help='Auto-discover and scan project')
+    auto_parser.add_argument('-d', '--directory', required=True, help='Project directory to scan')
+    auto_parser.add_argument('-o', '--output', help='Output file')
+
     # Nmap scanner
     nmap_parser = subparsers.add_parser('nmap', help='Nmap port scanning')
     nmap_parser.add_argument('-u', '--url', required=True, help='Target IP or hostname', dest='target')
@@ -560,7 +702,9 @@ Examples:
     
     # Execute selected mode
     try:
-        if args.mode == 'nmap':
+        if args.mode == 'scan':
+            auto_scan_mode(args)
+        elif args.mode == 'nmap':
             nmap_scan_mode(args)
         elif args.mode == 'subfinder':
             subfinder_mode(args)
