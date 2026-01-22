@@ -58,28 +58,69 @@ pip install -r requirements.txt
 
 ## Usage
 
-### 🚀 Quick Run (Recommended)
-Use the included helper script to automatically handle the virtual environment:
+## 🚀 How to Run
 
-```bash
-# Make executable (first time only)
-chmod +x run.sh
+I've included helper scripts that automatically handle the virtual environment for you. You don't need to manually install dependencies or activate the venv!
 
-# Run any command
-./run.sh java-scan -d /path/to/project
-./run.sh angular-scan -f package.json
-./run.sh --help
-```
+### 🍎 macOS & 🐧 Linux
+1.  Open your terminal.
+2.  Make the script executable (run this once):
+    ```bash
+    chmod +x run.sh
+    ```
+3.  Run the tool:
+    ```bash
+    # Auto-scan a project
+    ./run.sh scan -d /path/to/your/project
 
-### Interactive Mode
+    # Interactive mode
+    ./run.sh
+    ```
 
-Run without arguments for an interactive menu:
+### 🪟 Windows
+1.  Open Command Prompt (cmd) or PowerShell.
+2.  Run the batch file directly:
+    ```cmd
+    :: Auto-scan a project
+    run.bat scan -d C:\path\to\your\project
 
-```bash
-python securityscanner.py
-```
+    :: Interactive mode
+    run.bat
+    ```
 
-### Command-Line Mode
+### ⚡ Available Commands
+Once you have the helper script (`./run.sh` or `run.bat`), you can use any of these commands:
+
+| Feature | Command |
+| :--- | :--- |
+| **Auto-Discover** | `scan -d <dir>` |
+| **Java/Spring** | `java-scan -d <dir>` |
+| **Angular/Node** | `angular-scan -d <dir>` |
+| **Android** | `android-scan -d <dir>` |
+| **iOS** | `ios-scan -d <dir>` |
+| **Nmap** | `nmap -u <ip> -p common` |
+| **Subfinder** | `subfinder -u <domain>` |
+| **Help** | `--help` |
+
+### 🛠️ Manual Run (Advanced)
+If you prefer not to use the helper scripts:
+
+1.  **Install/Active venv**:
+    ```bash
+    # macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+    # Windows
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
+2.  **Run Tool**:
+    ```bash
+    python securityscanner.py scan -d ...
+    ```
 
 #### Nmap Port Scanning
 
