@@ -1,0 +1,9 @@
+{
+  "angular": {
+    "vulnerabilities": [],
+    "dependencies_scanned": 0,
+    "files_analyzed": [
+      "C:\\Users\\eSewa\\Security-Testing-Tool\\frontend\\package.json"
+    ]
+  }
+}

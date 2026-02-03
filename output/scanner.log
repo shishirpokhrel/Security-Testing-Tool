@@ -10,3 +10,10 @@
 2026-01-22 17:26:40 - SecurityScanner - [34mINFO[0m - ============================================================
 2026-01-22 17:26:58 - SecurityScanner - [33mWARNING[0m - 
 Scan interrupted by user
+2026-02-03 11:17:37 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-02-03 11:17:37 - SecurityScanner - [34mINFO[0m - AUTO-DISCOVERY SECURITY SCANNING MODE
+2026-02-03 11:17:37 - SecurityScanner - [34mINFO[0m - ============================================================
+2026-02-03 11:17:37 - SecurityScanner - [34mINFO[0m - Scanning directory for projects: C:\Users\eSewa\Security-Testing-Tool
+2026-02-03 11:17:37 - SecurityScanner - [34mINFO[0m - Detected project types: Angular/Node
+2026-02-03 11:17:46 - SecurityScanner - [32mSUCCESS[0m - No vulnerabilities found.
+2026-02-03 11:17:46 - SecurityScanner - [32mSUCCESS[0m - Results saved to output/autoscan_20260203_111737.json

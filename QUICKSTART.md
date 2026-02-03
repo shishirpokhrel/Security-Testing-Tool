@@ -1,158 +1,75 @@
-# Quick Start Guide
+# ⚡ Quick Start Guide
 
-## For WSL/Linux Users (Recommended)
+We have created helper scripts to make running the tool incredibly easy. No need to memorize complex commands!
 
-Since you're using WSL, follow these steps:
+---
 
-### 1. Run the automated installer
+## 🚀 For Windows Users (Recommended)
 
+### Option 1: Run the Web UI (Easier)
+1. **Double-click** `start_ui.bat`
+2. This will:
+   - Setup the environment
+   - Start the Backend (API)
+   - Start the Frontend (Web Dashboard) and open it in your browser
+
+### Option 2: Run the CLI (Advanced)
+1. **Double-click** `run.bat` OR open CMD/PowerShell and type:
+   ```powershell
+   .\run.bat
+   ```
+2. You can pass arguments directly:
+   ```powershell
+   .\run.bat scan -d C:\path\to\project    # Auto-scan a project
+   .\run.bat nmap -u 127.0.0.1 -p common   # Nmap scan
+   ```
+
+---
+
+## 🐧 For Linux / macOS / WSL Users
+
+First, make the scripts executable (one-time setup):
 ```bash
-cd /mnt/c/Users/eSewa/secTest
-
-# Make scripts executable
-chmod +x install.sh
-
-# Run installer
-./install.sh
+chmod +x run.sh start_ui.sh install.sh
 ```
 
-This will:
-- Install all Python dependencies
-- Check for Nmap and Subfinder
-- Test all imports
-
-### 2. Install Nmap (if not installed)
-
+### Option 1: Run the Web UI
 ```bash
-sudo apt update
-sudo apt install nmap
+./start_ui.sh
 ```
 
-### 3. (Optional) Install Subfinder
-
+### Option 2: Run the CLI
 ```bash
-# If you have Go installed:
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-
-# Or download binary from:
-# https://github.com/projectdiscovery/subfinder/releases
-```
-
-### 4. Run the scanner
-
-```bash
-# Interactive mode
-python3 securityscanner.py
-
-# Command-line mode examples
-python3 securityscanner.py nmap -u 127.0.0.1 -p common
-python3 securityscanner.py xss -u "http://testphp.vulnweb.com/search.php?test=query"
-python3 securityscanner.py --help
+./run.sh help
+./run.sh scan -d /path/to/project
 ```
 
 ---
 
-## For Windows PowerShell Users
+## 📦 Zero-Setup Installation
 
-### 1. Run the automated installer
+The `run` and `start_ui` scripts will **automatically create a virtual environment and install dependencies** if they are missing.
 
+However, if you want to install everything manually first:
+
+**Windows:**
 ```powershell
-cd C:\Users\eSewa\secTest
-
-# Just double-click install.bat or run:
 .\install.bat
 ```
 
-### 2. Install Nmap
-
-Download from: https://nmap.org/download.html
-
-### 3. Run the scanner
-
-```powershell
-python securityscanner.py
-```
-
----
-
-## Troubleshooting the Import Error
-
-The error you saw:
-```
-ModuleNotFoundError: No module named 'nmap'
-```
-
-Means the dependencies aren't installed yet. Fix it with:
-
-### In WSL/Linux:
+**Linux/macOS:**
 ```bash
-pip3 install -r requirements.txt
-# or
-python3 -m pip install -r requirements.txt
-```
-
-### In Windows:
-```powershell
-pip install -r requirements.txt
-# or
-python -m pip install -r requirements.txt
+./install.sh
 ```
 
 ---
 
-## Testing Your Installation
+## 🛠️ Prerequisites
 
-After installation, run the test script:
+You still need these installed on your system:
+1. **Python 3.7+**
+2. **Node.js** (Only for Web UI)
+3. **Nmap** (Required for network scanning)
 
-```bash
-# WSL/Linux
-python3 test_imports.py
+For detailed manual installation, see [INSTALL.md](INSTALL.md).
 
-# Windows
-python test_imports.py
-```
-
-This will check all modules and tell you exactly what's missing.
-
----
-
-## Safe Testing Commands
-
-Once installed, test with these safe commands:
-
-```bash
-# 1. Test help system
-python3 securityscanner.py --help
-
-# 2. Test Nmap on localhost (safe)
-python3 securityscanner.py nmap -u 127.0.0.1 -p 80,443
-
-# 3. Test XSS scanner on a vulnerable test site
-python3 securityscanner.py xss -u "http://testphp.vulnweb.com/search.php?test=query"
-
-# 4. Interactive mode
-python3 securityscanner.py
-```
-
----
-
-## Common Issues
-
-**"python3 not recognized"**
-- In Windows PowerShell: Use `python` instead of `python3`
-- In WSL: Python3 should be installed by default
-
-**"Permission denied" on install.sh**
-- Run: `chmod +x install.sh`
-
-**Nmap scans fail**
-- Install Nmap: `sudo apt install nmap` (WSL) or download for Windows
-- Some scans need admin/root privileges
-
-**No module named 'paramiko'**
-- Dependencies not fully installed
-- Run: `pip3 install -r requirements.txt` again
-
----
-
-For detailed instructions, see [INSTALL.md](INSTALL.md)
