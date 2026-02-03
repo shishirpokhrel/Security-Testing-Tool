@@ -8,7 +8,9 @@ A comprehensive Python-based security scanning tool that combines network scanni
 - **🔍 Nmap Port Scanner**: Network reconnaissance with port scanning, service detection, OS detection, and vulnerability scanning
 - **🌐 Subfinder Integration**: Passive subdomain enumeration for target domains
 - **🔐 Brute Force Module**: Credential testing for HTTP (Basic/Form), SSH, and FTP
-- **⚠️ XSS Scanner**: Cross-site scripting vulnerability detection with multiple payload injection vectors
+- ⚠️ **XSS Scanner**: Cross-site scripting vulnerability detection with multiple payload injection vectors
+- ☕ **Java Scanner**: Vulnerability scanning for Maven (pom.xml) and Gradle (build.gradle) dependencies
+- 🅰️ **Angular/Node Scanner**: Vulnerability scanning for npm (package.json) dependencies
 
 ## Prerequisites
 
@@ -79,7 +81,39 @@ Run without arguments for an interactive menu:
 python securityscanner.py
 ```
 
-### Command-Line Mode
+### ⚡ Available Commands
+Once you have the helper script (`./run.sh` or `run.bat`), you can use any of these commands:
+
+| Feature | Command |
+| :--- | :--- |
+| **Auto-Discover** | `scan -d <dir>` |
+| **Java/Spring** | `java-scan -d <dir>` |
+| **Angular/Node** | `angular-scan -d <dir>` |
+| **Android** | `android-scan -d <dir>` |
+| **iOS** | `ios-scan -d <dir>` |
+| **Nmap** | `nmap -u <ip> -p common` |
+| **Subfinder** | `subfinder -u <domain>` |
+| **Help** | `--help` |
+
+### 🛠️ Manual Run (Advanced)
+If you prefer not to use the helper scripts:
+
+1.  **Install/Active venv**:
+    ```bash
+    # macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+
+    # Windows
+    python -m venv venv
+    venv\Scripts\activate
+    pip install -r requirements.txt
+    ```
+2.  **Run Tool**:
+    ```bash
+    python securityscanner.py scan -d ...
+    ```
 
 #### Nmap Port Scanning
 
@@ -169,6 +203,35 @@ Save results:
 python securityscanner.py xss -u "http://example.com/search?q=test" -o xss_results.json
 ```
 
+## Scan with custom payloads:
+```bash
+python securityscanner.py xss -u "http://example.com/search?q=test" -pf custom_payloads.txt
+```
+
+#### Java/Spring Boot Scan
+
+Scan a single file:
+```bash
+python securityscanner.py java-scan -f path/to/pom.xml
+```
+
+Scan a directory:
+```bash
+python securityscanner.py java-scan -d path/to/project/root
+```
+
+#### AngularJS/Node Scan
+
+Scan a single file:
+```bash
+python securityscanner.py angular-scan -f path/to/package.json
+```
+
+Scan a directory:
+```bash
+python securityscanner.py angular-scan -d path/to/project/root
+```
+
 ## Project Structure
 
 ```
@@ -183,7 +246,9 @@ secTest/
 │   ├── nmap_scanner.py     # Nmap integration
 │   ├── subfinder_module.py # Subfinder integration
 │   ├── bruteforce.py       # Brute force module
-│   └── xss_scanner.py      # XSS vulnerability scanner
+│   ├── xss_scanner.py      # XSS vulnerability scanner
+│   ├── java_scanner.py     # Java dependency scanner
+│   └── angular_scanner.py  # AngularJS/Node scanner
 ├── utils/
 │   ├── __init__.py
 │   └── logger.py           # Colored logging utility
