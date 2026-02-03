@@ -31,6 +31,64 @@ These scripts will:
 
 ## 🔧 Manual Installation
 
+If you want to set up the tool manually or want to run the **Web UI**, follow these steps:
+
+### Prerequisites
+
+1. **Python 3.7+** (Required for all modes)
+2. **Node.js & npm** (Required for Web UI only)
+   - Download: [nodejs.org](https://nodejs.org/)
+   - Verify: `node -v` and `npm -v`
+3. **Nmap** (Required for scanning)
+   - Download: [nmap.org](https://nmap.org/download.html)
+
+### 1. Install Backend Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Install Frontend Dependencies (Web UI)
+
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+---
+
+## Running the Application
+
+### 🌐 Web UI Mode (Recommended)
+
+You need to run the Backend and Frontend in separate terminals.
+
+**Terminal 1 (Backend):**
+```bash
+python api.py
+# Server runs on http://localhost:8000
+```
+
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
+npm run dev
+# Interface runs on http://localhost:5173 (check console for exact URL)
+```
+
+### 💻 CLI Mode (Legacy)
+
+Run the classic command-line interface:
+
+```bash
+python securityscanner.py
+```
+
+---
+
+## 🔧 Detailed Manual Installation (Windows)
+
 If the automated scripts don't work for you, follow these steps:
 
 ## Quick Start for Windows

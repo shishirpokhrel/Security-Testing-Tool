@@ -4,6 +4,7 @@ A comprehensive Python-based security scanning tool that combines network scanni
 
 ## Features
 
+- **💻 Modern Web UI**: React-based dashboard for easy scanning and visualization
 - **🔍 Nmap Port Scanner**: Network reconnaissance with port scanning, service detection, OS detection, and vulnerability scanning
 - **🌐 Subfinder Integration**: Passive subdomain enumeration for target domains
 - **🔐 Brute Force Module**: Credential testing for HTTP (Basic/Form), SSH, and FTP
@@ -56,7 +57,21 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Interactive Mode
+
+### 🌐 Web UI (new)
+
+1. Start the Backend:
+   ```bash
+   python api.py
+   ```
+2. Start the Frontend:
+   ```bash
+   cd frontend
+   npm run dev
+   ```
+3. Open your browser at `http://localhost:5173`
+
+### Interactive Mode (CLI)
 
 Run without arguments for an interactive menu:
 
@@ -158,6 +173,8 @@ python securityscanner.py xss -u "http://example.com/search?q=test" -o xss_resul
 
 ```
 secTest/
+├── api.py                  # FastAPI Backend
+├── frontend/               # React Frontend Application
 ├── securityscanner.py      # Main CLI interface
 ├── config.py               # Configuration settings
 ├── requirements.txt        # Python dependencies
