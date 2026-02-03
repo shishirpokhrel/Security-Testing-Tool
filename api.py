@@ -59,7 +59,12 @@ class XSSRequest(BaseModel):
 
 @app.get("/")
 async def root():
-    return {"message": "Security Testing Tool API is running"}
+    return {
+        "message": "Security Testing Tool API is running",
+        "docs": "Visit /docs for API documentation",
+        "warning": "This is the API Server. The Web UI runs on a different port (usually 5173).",
+        "frontend_url": "http://localhost:5173"
+    }
 
 @app.post("/api/scan/nmap")
 async def scan_nmap(request: NmapRequest):
