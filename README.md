@@ -11,12 +11,14 @@ A comprehensive Python-based security scanning tool that combines network scanni
 - ⚠️ **XSS Scanner**: Cross-site scripting vulnerability detection with multiple payload injection vectors
 - ☕ **Java Scanner**: Vulnerability scanning for Maven (pom.xml) and Gradle (build.gradle) dependencies
 - 🅰️ **Angular/Node Scanner**: Vulnerability scanning for npm (package.json) dependencies
+- 📱 **Android Scanner**: Security scanning for AndroidManifest.xml and Java/Kotlin code
+- 🍎 **iOS Scanner**: Security scanning for Info.plist configurations
 
 ## Prerequisites
 
 ### Required Software
 
-1. **Python 3.7+**
+1. **Python 3.7+** 
    ```bash
    python --version
    ```
@@ -203,10 +205,7 @@ Save results:
 python securityscanner.py xss -u "http://example.com/search?q=test" -o xss_results.json
 ```
 
-## Scan with custom payloads:
-```bash
-python securityscanner.py xss -u "http://example.com/search?q=test" -pf custom_payloads.txt
-```
+
 
 #### Java/Spring Boot Scan
 
@@ -232,6 +231,20 @@ Scan a directory:
 python securityscanner.py angular-scan -d path/to/project/root
 ```
 
+#### Android Scan
+
+Scan a directory:
+```bash
+python securityscanner.py android-scan -d path/to/android/project
+```
+
+#### iOS Scan
+
+Scan a directory:
+```bash
+python securityscanner.py ios-scan -d path/to/ios/project
+```
+
 ## Project Structure
 
 ```
@@ -248,7 +261,9 @@ secTest/
 │   ├── bruteforce.py       # Brute force module
 │   ├── xss_scanner.py      # XSS vulnerability scanner
 │   ├── java_scanner.py     # Java dependency scanner
-│   └── angular_scanner.py  # AngularJS/Node scanner
+│   ├── angular_scanner.py  # AngularJS/Node scanner
+│   ├── android_scanner.py  # Android security scanner
+│   └── ios_scanner.py      # iOS security scanner
 ├── utils/
 │   ├── __init__.py
 │   └── logger.py           # Colored logging utility
